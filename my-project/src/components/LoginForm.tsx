@@ -86,7 +86,7 @@ const LoginForm: FC<FormProps> = ({ isLoading }) => {
                 className="absolute top-[15px] right-[15px]"
               /> : <VisibilityIcon
               className="absolute top-[15px] right-[15px] opacity-50"
-            />}
+              />}
             </button>
           </InputBar>
 
