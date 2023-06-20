@@ -1,6 +1,6 @@
 "use client"
 
-import LoginForm from "@/components/LoginForm";
+import SignUpForm from "@/components/SignUpForm";
 import Image from "next/image"
 import React, { useState } from "react";
 import { Divider } from '@mui/material';
@@ -8,7 +8,7 @@ import Button from "@/components/ui/Button";
 import Link from "next/link";
 import getGoogleUrl from "@/lib/getGoogleUrl";
 
-export default function SignIn() {
+export default function SignUp() {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
@@ -23,11 +23,11 @@ export default function SignIn() {
           height={100}
           priority
         />
-        <LoginForm isLoading={isLoading} />
+        <SignUpForm isLoading={isLoading} />
         <br></br>
-        <Link href="/sign-up">
+        <Link href="/sign-in">
           <p className="underline text-blue-800">
-            Não possui uma conta ainda? Cadastre-se!
+            Já possui uma conta? Faça login!
           </p>
         </Link>
         <Divider className="w-[80%] border-t-2 border-gray-300 my-9">OU</Divider>

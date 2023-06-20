@@ -11,10 +11,10 @@ export interface FormProps extends
   isLoading?: boolean;
 }
 
-const LoginForm: FC<FormProps> = ({ isLoading }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+const SignUpForm: FC<FormProps> = ({ isLoading }) => {
+  const { register, watch, handleSubmit, formState: { errors } } = useForm();
+  const password = watch("password");
   const [inputType, setInputType] = useState("password");
-  const [disabled, setDisabled] = useState(true);
 
   interface ValidationErrorMessages {
     [key: string]: string;
@@ -22,6 +22,8 @@ const LoginForm: FC<FormProps> = ({ isLoading }) => {
   
   const validationErrorMessages: ValidationErrorMessages = {
     default: "",
+    min: "At least two digits required",
+    mustMatch: "Passwords must match",
     atLeast6: "Password must contains at least 6 digits",
     required: "Field can not be empty",
     oneUpperCase: "Password must contains at least one uppercase letter",
@@ -89,7 +91,6 @@ const LoginForm: FC<FormProps> = ({ isLoading }) => {
             />}
             </button>
           </InputBar>
-
           <div>
             <ReportProblemIcon className={`${!errors.password && "invisible"} text-red-800`} />
             &nbsp;
@@ -97,6 +98,46 @@ const LoginForm: FC<FormProps> = ({ isLoading }) => {
               {
                 errors?.password?.type
                 ? validationErrorMessages[errors.password.type as string || "default"]
+                : ""
+              }
+            </span>
+          </div>
+        </div>
+        <div className="w-[80%]">
+          <InputBar
+            type="password"
+            placeholder="Confirme a senha"
+            className="p-md"
+            inputType={inputType}
+            register={register("confirmPassword", {
+              validate: {
+                mustMatch: (value) => value === password,
+              },
+              min: 6,
+              required: true
+            })}
+          >
+            <button
+              type="button"
+              className="bg-transparent border-none"
+              onClick={() => setInputType((prevState) => (
+                prevState === "text" ? "password" : "text"
+              ))}
+            >
+              {inputType === "password" ? <VisibilityOffIcon
+                className="absolute top-[15px] right-[15px]"
+              /> : <VisibilityIcon
+              className="absolute top-[15px] right-[15px] opacity-50"
+            />}
+            </button>
+          </InputBar>
+          <div>
+            <ReportProblemIcon className={`${!errors.confirmPassword && "invisible"} text-red-800`} />
+            &nbsp;
+            <span className={`${!errors.confirmPassword && "invisible"} text-red-800`}>
+              {
+                errors?.confirmPassword?.type
+                ? validationErrorMessages[errors.confirmPassword.type as string || "default"]
                 : ""
               }
             </span>
@@ -115,4 +156,4 @@ const LoginForm: FC<FormProps> = ({ isLoading }) => {
   )
 }
 
-export default LoginForm
+export default SignUpForm
