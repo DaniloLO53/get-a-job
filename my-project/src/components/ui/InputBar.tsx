@@ -40,7 +40,6 @@ const InputBar: FC<InputProps> = ({
   inputType,
   ...props
 }) => {
-  console.log('input type', inputType)
   return (
     <div className="p-sm w-full relative">
       <label htmlFor={props.name} />

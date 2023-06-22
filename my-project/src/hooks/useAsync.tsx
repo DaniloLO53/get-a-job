@@ -22,7 +22,7 @@ export default function useAsync(handler: any, immediate = true) {
   }
 
   useEffect(() => {
-    act();
+    immediate && act();
   }, [])
 
   return {

@@ -1,5 +1,8 @@
 import './globals.css'
 import { Roboto } from 'next/font/google'
+import { UserProvider } from '@/contexts/UserContext'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const inter = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -19,7 +22,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        <ToastContainer />
+        <UserProvider>
+          {children}
+        </UserProvider>
       </body>
     </html>
   )
