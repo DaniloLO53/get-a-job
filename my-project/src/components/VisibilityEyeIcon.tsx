@@ -1,13 +1,11 @@
 import { ButtonHTMLAttributes, FC } from "react";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-
-export type InputType = "password" | "text";
-export type SetInputTypeCallBack = (prevState: InputType) => InputType;
+import { InputType } from "@/utils/interfaces";
 
 export interface ButtonProps extends
   ButtonHTMLAttributes<HTMLButtonElement> {
-  setInputType: (cb: SetInputTypeCallBack) => InputType;
+  setInputType: React.Dispatch<React.SetStateAction<InputType>>
   inputType: InputType;
 }
 

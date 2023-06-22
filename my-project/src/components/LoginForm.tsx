@@ -1,29 +1,28 @@
 "use client"
 
-import React, { InputHTMLAttributes, useState, FC, FormHTMLAttributes } from "react";
+import React, { useState, FC, FormHTMLAttributes } from "react";
 import { useForm } from "react-hook-form";
 import Button from "./ui/Button";
 import SignInInputBars from "./SignInInputBars";
 import { validationErrorMessages } from "@/utils/messages";
+import { InputType } from "@/utils/interfaces";
 
 export interface FormProps extends
   FormHTMLAttributes<HTMLFormElement> {
-  isLoading?: boolean;
+  isLoading: boolean;
+  submit: any;
 }
 
-const LoginForm: FC<FormProps> = ({ isLoading }) => {
+const LoginForm: FC<FormProps> = ({ isLoading, submit }) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const [inputType, setInputType] = useState("password");
-
-  const onSubmit = (data: any) => {
-    alert(JSON.stringify(data));
-  };
+  const [inputType, setInputType] = useState<InputType>("password");
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="relative w-full h-full
+    <form onSubmit={handleSubmit(submit)} className="relative w-full h-full
     flex flex-col items-center justify-center">
         <SignInInputBars
           errors={errors}
+          isLoading={isLoading}
           register={register}
           inputType={inputType}
           setInputType={setInputType}

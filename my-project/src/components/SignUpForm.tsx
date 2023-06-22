@@ -6,17 +6,18 @@ import Button from "./ui/Button";
 import SignInInputBars from "./SignInInputBars";
 import InputBarConfirmPassword from "./ui/InputBarConfirmPassword";
 import { validationErrorMessages } from "../utils/messages";
+import { InputType } from "@/utils/interfaces";
 
 export interface FormProps extends
   FormHTMLAttributes<HTMLFormElement> {
-  isLoading?: boolean;
-  submit?: any;
+  isLoading: boolean;
+  submit: any;
 }
 
 const SignUpForm: FC<FormProps> = ({ isLoading, submit }) => {
   const { register, watch, handleSubmit, formState: { errors } } = useForm();
   const password = watch("password");
-  const [inputType, setInputType] = useState("password");
+  const [inputType, setInputType] = useState<InputType>("password");
 
   const barProps = {
     register, errors, isLoading, validationErrorMessages, inputType, setInputType

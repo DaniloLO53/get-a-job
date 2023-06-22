@@ -1,18 +1,11 @@
 import { FC, InputHTMLAttributes } from "react";
-import VisibilityEyeIcon, { InputType, SetInputTypeCallBack } from "../VisibilityEyeIcon";
+import VisibilityEyeIcon from "../VisibilityEyeIcon";
 import InputBar from "./InputBar";
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+import { InputBarProps } from "@/utils/interfaces";
 
 export interface InputProps extends
-  InputHTMLAttributes<HTMLInputElement> {
-  isLoading?: boolean;
-  register: any;
-  inputType?: string;
-  setInputType: any;
-  errors: any;
-  validationErrorMessages: any
-  password: string
-}
+  InputHTMLAttributes<HTMLInputElement>, InputBarProps {}
 
 const InputBarConfirmPassword: FC<InputProps> = ({ ...props }) => {
   return (
@@ -31,8 +24,8 @@ const InputBarConfirmPassword: FC<InputProps> = ({ ...props }) => {
         })}
       >
         <VisibilityEyeIcon
-          inputType={props.inputType as InputType}
-          setInputType={props.setInputType as (cb: SetInputTypeCallBack) => InputType}
+          inputType={props.inputType}
+          setInputType={props.setInputType}
         />
       </InputBar>
       <div>
@@ -41,7 +34,7 @@ const InputBarConfirmPassword: FC<InputProps> = ({ ...props }) => {
         <span className={`${!props.errors.confirmPassword && "invisible"} text-red-800`}>
         {
           props.errors?.confirmPassword?.type
-          ? props.validationErrorMessages[props.errors.confirmPassword.type as string || "default"]
+          ? props.validationErrorMessages[props.errors.confirmPassword.type || "default"]
           : ""
         }
         </span>

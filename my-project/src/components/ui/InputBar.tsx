@@ -1,5 +1,7 @@
+import { InputType, RegisterType } from "@/utils/interfaces";
 import { cva, VariantProps } from "class-variance-authority";
 import { FC, InputHTMLAttributes } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 import { cn } from "../../lib/mergeClasses";
 
 const inputVariants = cva(
@@ -27,8 +29,8 @@ export interface InputProps extends
   InputHTMLAttributes<HTMLInputElement>,
   VariantProps<typeof inputVariants> {
   isLoading?: boolean;
-  register: any;
-  inputType?: string;
+  register: UseFormRegisterReturn<RegisterType>;
+  inputType: InputType;
 }
 
 const InputBar: FC<InputProps> = ({

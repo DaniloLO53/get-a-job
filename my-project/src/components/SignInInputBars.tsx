@@ -1,17 +1,11 @@
 "use client"
 
+import { InputBarProps } from "@/utils/interfaces";
 import React, { FC, HTMLAttributes } from "react";
 import InputBarEmail from "./ui/InputBarEmail";
 import InputBarPassword from "./ui/InputBarPassword";
 
-interface SignInInputBarsProps {
-  isLoading?: boolean;
-  register: any;
-  errors: any;
-  setInputType: any;
-  inputType: any;
-  validationErrorMessages: any;
-}
+interface SignInInputBarsProps extends Omit<InputBarProps, "password"> {}
 
 export interface FragmentProps extends
   HTMLAttributes<HTMLElement>, SignInInputBarsProps {}

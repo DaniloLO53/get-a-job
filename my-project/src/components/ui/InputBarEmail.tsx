@@ -1,14 +1,11 @@
-import { cva, VariantProps } from "class-variance-authority";
 import { FC, InputHTMLAttributes } from "react";
 import InputBar from "./InputBar";
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+import { InputBarProps } from "@/utils/interfaces";
 
-export interface InputProps extends
-  InputHTMLAttributes<HTMLInputElement> {
-  isLoading?: boolean;
-  register: any;
-  errors: any;
-}
+interface InputProps extends
+  InputHTMLAttributes<HTMLInputElement>,
+  Pick<InputBarProps, "isLoading" | "register" | "errors"> {}
 
 const InputBarEmail: FC<InputProps> = ({ ...props }) => {
   return (

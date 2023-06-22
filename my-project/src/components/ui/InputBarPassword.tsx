@@ -1,19 +1,11 @@
-import { cva, VariantProps } from "class-variance-authority";
 import { FC, InputHTMLAttributes } from "react";
-import { cn } from "../../lib/mergeClasses";
-import VisibilityEyeIcon, { InputType, SetInputTypeCallBack } from "../VisibilityEyeIcon";
+import VisibilityEyeIcon from "../VisibilityEyeIcon";
 import InputBar from "./InputBar";
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+import { InputBarProps } from "@/utils/interfaces";
 
 export interface InputProps extends
-  InputHTMLAttributes<HTMLInputElement> {
-  isLoading?: boolean;
-  register: any;
-  inputType?: string;
-  setInputType: (cb: SetInputTypeCallBack) => InputType;
-  errors: any;
-  validationErrorMessages: any
-}
+  InputHTMLAttributes<HTMLInputElement>, Omit<InputBarProps, "password"> {}
 
 const InputBarPassword: FC<InputProps> = ({ ...props }) => {
   return (
@@ -36,8 +28,8 @@ const InputBarPassword: FC<InputProps> = ({ ...props }) => {
         })}
       >
         <VisibilityEyeIcon
-          inputType={props.inputType as InputType}
-          setInputType={props.setInputType as (cb: SetInputTypeCallBack) => InputType}
+          inputType={props.inputType}
+          setInputType={props.setInputType}
         />
       </InputBar>
 

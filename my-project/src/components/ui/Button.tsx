@@ -1,6 +1,7 @@
 import { cva, VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, FC } from "react";
 import { cn } from "../../lib/mergeClasses";
+import { ThreeDots } from  'react-loader-spinner'
 
 const buttonVariants = cva(
   `rounded px-xxxl py-xl`,
