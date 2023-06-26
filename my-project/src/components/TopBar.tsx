@@ -11,7 +11,8 @@ export interface TopBarProps extends
 const TopBar: FC<TopBarProps> = ({ }) => {
   return (
     <header
-      className="bg-transparent border-solid border-b-[1px] border-b-secondary-100 flex justify-around items-center h-[60px]"
+      className="bg-transparent border-solid border-b-[1px] border-b-secondary-100 flex
+      justify-center items-center h-[60px] fixed w-[calc(100vw-315px)] backdrop-filter backdrop-blur-lg"
     >
       <div className="w-[50%]">
         <InputBar

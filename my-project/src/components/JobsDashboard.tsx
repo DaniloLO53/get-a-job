@@ -12,9 +12,10 @@ export interface JobsDashboardProps extends
 
 
 const JobsDashboard: FC<JobsDashboardProps> = ({ jobsData }) => {
+  console.log(jobsData)
   return (
     <ul
-      className="w-full flex flex-col items-center"
+      className="flex flex-col items-center mt-[60px]"
     >
       {
         jobsData?.jobs.map((jobData: any) => {

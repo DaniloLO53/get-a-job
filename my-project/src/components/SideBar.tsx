@@ -12,7 +12,7 @@ export interface SideBarProps extends
 const SideBar: FC<SideBarProps> = ({ }) => {
   return (
     <aside
-      className="bg-red-100 w-[300px]"
+      className="bg-red-100 w-[300px] h-screen fixed right-0"
     >
       <div className="">
         <h3 className="m-[6px] text-[21px]">Filtros</h3>

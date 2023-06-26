@@ -21,13 +21,13 @@ export default function Jobs() {
 
   return (
     <div>
-      <TopBar />
-      <div
-        className="flex flex-column h-[calc(100vh-60px)]"
-      >
-        <SideBar
+      <SideBar
           setJobsData={setJobsData}
-        />
+      />
+      <div
+        className="flex w-[calc(100vw-300px)]"
+      >
+        <TopBar />
         <JobsDashboard
           jobsData={jobsData}
         />
