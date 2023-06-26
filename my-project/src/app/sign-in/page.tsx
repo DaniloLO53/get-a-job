@@ -22,7 +22,7 @@ export default function SignIn() {
   async function submit(data: any) {
     try {
       const response = await signIn(data);
-      setUserData((prevState: any) => ({ ...prevState, response }));
+      setUserData(response);
       router.push("/jobs")
     } catch (error) {
       if ((error as IError).response.data) {

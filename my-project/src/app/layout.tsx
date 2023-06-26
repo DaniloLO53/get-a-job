@@ -3,6 +3,7 @@ import { Roboto } from 'next/font/google'
 import { UserProvider } from '@/contexts/UserContext'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { JobsProvider } from '@/contexts/JobsContext';
 
 const inter = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -36,7 +37,9 @@ export default function RootLayout({
         />
         <ToastContainer />
         <UserProvider>
-          {children}
+          <JobsProvider>
+            {children}
+          </JobsProvider>
         </UserProvider>
       </body>
     </html>

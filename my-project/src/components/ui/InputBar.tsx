@@ -14,7 +14,7 @@ const inputVariants = cva(
         transparent: "bg-transparent"
       },
       sizes: {
-        default: "w-full",
+        default: "w-full h-full",
         sm: "h-9 px-2",
         lg: "h-11 px-8"
       },
@@ -30,9 +30,8 @@ export interface InputProps extends
   InputHTMLAttributes<HTMLInputElement>,
   VariantProps<typeof inputVariants> {
   isLoading?: boolean;
-  register: UseFormRegisterReturn<RegisterType>;
+  register?: UseFormRegisterReturn<RegisterType>;
   inputType: InputType;
-  labelText?: string;
 }
 
 const InputBar: FC<InputProps> = ({
@@ -56,9 +55,7 @@ const InputBar: FC<InputProps> = ({
       <label
         htmlFor={props.name}
         className="absolute p-[2px] bg-white top-[-4px] left-[25px] text-xs"
-      >
-        { props.labelText }
-      </label>
+      />
       {children}
     </div>
   );
