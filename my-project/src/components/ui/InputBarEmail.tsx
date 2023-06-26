@@ -11,6 +11,7 @@ const InputBarEmail: FC<InputProps> = ({ ...props }) => {
   return (
     <div className="w-[80%]">
       <InputBar
+        variant={props.errors.email ? "error" : "default"}
         type="email"
         placeholder="Email"
         className="p-md relative"
@@ -23,7 +24,9 @@ const InputBarEmail: FC<InputProps> = ({ ...props }) => {
       <div>
         <ReportProblemIcon className={`${!props.errors.email && "invisible"} text-red-800`} />
         &nbsp;
-        <span className={`${!props.errors.email && "invisible"} text-red-800`}>Email is not valid</span>
+        <span className={`${!props.errors.email && "invisible"} text-red-800`}>
+          Email is not valid
+        </span>
       </div>
     </div>
   );

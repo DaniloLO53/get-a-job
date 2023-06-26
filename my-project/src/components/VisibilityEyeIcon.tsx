@@ -29,6 +29,4 @@ const VisibilityEyeIcon: FC<ButtonProps> = ({ ...props }) => {
   );
 };
 
-
-
 export default VisibilityEyeIcon;

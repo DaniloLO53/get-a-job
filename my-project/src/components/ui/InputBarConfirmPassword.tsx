@@ -12,6 +12,7 @@ const InputBarConfirmPassword: FC<InputProps> = ({ ...props }) => {
     <div className="w-[80%]">
       <InputBar
         type="password"
+        variant={props.errors.confirmPassword ? "error" : "default"}
         placeholder="Confirme a senha"
         className="p-md"
         inputType={props.inputType}

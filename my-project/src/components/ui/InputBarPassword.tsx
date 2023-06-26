@@ -14,8 +14,9 @@ const InputBarPassword: FC<InputProps> = ({ ...props }) => {
         type="password"
         placeholder="Senha"
         className="p-md"
+        variant={props.errors.password ? "error" : "default"}
         inputType={props.inputType}
-        register={props.register("password", {
+       register={props.register("password", {
           validate: {
             atLeast6: (value: string) => value.length >= 6,
             oneUpperCase: (value: string) => (/^(?=.*[A-Z]).{6,}$/).test(value),

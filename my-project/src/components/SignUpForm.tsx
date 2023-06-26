@@ -34,7 +34,7 @@ const SignUpForm: FC<FormProps> = ({ isLoading, submit }) => {
           disabled={!!errors.password || !!errors.email}
           variant={(!!errors.password || !!errors.email) ? "transparent" : "default"}
         >
-          Entrar
+          Cadastrar
         </Button>
       </div>
     </form>

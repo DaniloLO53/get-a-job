@@ -15,7 +15,7 @@ import useSignIn from "@/hooks/api/useSignIn";
 import { ThreeDots } from  'react-loader-spinner'
 
 export default function SignIn() {
-  const { signIn, signInLoading, signInError } = useSignIn();
+  const { signIn, signInLoading } = useSignIn();
   const { setUserData } = useUserContext();
   const router =  useRouter();
 
@@ -23,7 +23,7 @@ export default function SignIn() {
     try {
       const response = await signIn(data);
       setUserData((prevState: any) => ({ ...prevState, response }));
-      router.push("/")
+      router.push("/jobs")
     } catch (error) {
       if ((error as IError).response.data) {
         toast.error(((error as IError)).response.data.message);

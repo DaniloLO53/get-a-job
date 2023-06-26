@@ -20,25 +20,24 @@ const LoginForm: FC<FormProps> = ({ isLoading, submit }) => {
   return (
     <form onSubmit={handleSubmit(submit)} className="relative w-full h-full
     flex flex-col items-center justify-center">
-        <SignInInputBars
-          errors={errors}
+      <SignInInputBars
+        errors={errors}
+        isLoading={isLoading}
+        register={register}
+        inputType={inputType}
+        setInputType={setInputType}
+        validationErrorMessages={validationErrorMessages}
+      />
+      <div className="mt-5">
+        <Button
           isLoading={isLoading}
-          register={register}
-          inputType={inputType}
-          setInputType={setInputType}
-          validationErrorMessages={validationErrorMessages}
-        />
-        <div className="mt-5">
-          <Button
-            isLoading={isLoading}
-            disabled={!!errors.password || !!errors.email}
-            variant={(!!errors.password || !!errors.email) ? "transparent" : "default"
-          }>
-            Entrar
-          </Button>
-        </div>
-      </form>
-
+          disabled={!!errors.password || !!errors.email}
+          variant={(!!errors.password || !!errors.email) ? "transparent" : "default"
+        }>
+          Entrar
+        </Button>
+      </div>
+    </form>
   )
 }
 
