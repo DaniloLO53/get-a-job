@@ -15,7 +15,7 @@ const JobsDashboard: FC<JobsDashboardProps> = ({ jobsData }) => {
   console.log(jobsData)
   return (
     <ul
-      className="flex flex-col items-center mt-[60px]"
+      className="flex flex-col justify-center items-center mt-[60px]"
     >
       {
         jobsData?.jobs.map((jobData: any) => {

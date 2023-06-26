@@ -25,7 +25,7 @@ export default function Jobs() {
           setJobsData={setJobsData}
       />
       <div
-        className="flex w-[calc(100vw-300px)]"
+        className="flex justify-center w-[calc(100vw-350px)]"
       >
         <TopBar />
         <JobsDashboard
