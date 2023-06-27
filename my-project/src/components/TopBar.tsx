@@ -11,9 +11,11 @@ export interface TopBarProps extends
   HTMLAttributes<HTMLElement> {
   isLoading?: boolean;
   searchHandler: any
+  search: any
+  setSearch: any
 }
 
-const TopBar: FC<TopBarProps> = ({ searchHandler }) => {
+const TopBar: FC<TopBarProps> = ({ searchHandler, search, setSearch }) => {
   
 
   return (
@@ -27,7 +29,9 @@ const TopBar: FC<TopBarProps> = ({ searchHandler }) => {
           inputType="text"
           placeholder="Procure sua vaga"
           valueHandler={searchHandler}
-          debounceTimeout={2000}
+          search={search}
+          setSearch={setSearch}
+          debounceTimeout={1000}
         />
       </div>
     </header>

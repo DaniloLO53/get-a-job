@@ -29,7 +29,7 @@ const JobCard: FC<JobCardProps> = ({ jobData }) => {
   
   return (
     <li
-      className="flex flex-col w-[90%] border-b-solid border-b-rounded border-b-[1px] border-b-secondary-100 p-[15px]"
+      className="flex flex-col w-[90%] p-[15px]"
     >
       <div className="text-[24px] text-500 flex items-center justify-between">
         <span>{jobData.title}</span>

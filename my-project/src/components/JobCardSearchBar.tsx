@@ -31,7 +31,7 @@ const JobCardSearchBar: FC<JobCardProps> = ({ jobData }) => {
   
   return (
     <li
-      className="border-b-solid border-b-gray-100 border-b-[1px] mb-[10px]"
+      className="hover:bg-primary-100/20 py-4 px-3 first:pt-2 last:pb-2"
     >
       <p className="text-[22px] font-medium">{jobData.title}</p>
       <div className="flex items-center">

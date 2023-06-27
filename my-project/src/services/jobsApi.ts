@@ -13,3 +13,12 @@ export async function searchBar(searchQuery: string) {
   });
   return response.data;
 }
+
+export async function searchBarMore(searchQuery: string) {
+  const response = await api.get("/jobs/search/more", {
+    params: {
+      searchQuery
+    }
+  });
+  return response.data;
+}

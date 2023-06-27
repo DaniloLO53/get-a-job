@@ -6,6 +6,7 @@ import TopBar from "@/components/TopBar";
 import { useJobsContext } from "@/contexts/JobsContext";
 import useJobs from "@/hooks/api/useJobs";
 import useSearchBar from "@/hooks/api/useSearchBar";
+import { searchBarMore } from "@/services/jobsApi";
 import React, { useEffect, useState } from "react";
 
 export default function Jobs() {
@@ -13,6 +14,7 @@ export default function Jobs() {
   const { setJobsData, jobsData } = useJobsContext();
   const [jobsSearchData, setJobsSearchData] = useState(null);
   const { searchBar, searchBarLoading } = useSearchBar();
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     async function getJobs() {
@@ -32,6 +34,12 @@ export default function Jobs() {
     }
   }
 
+  async function searchHandlerMore() {
+    const response = await searchBarMore(search);
+    setJobsSearchData(response);
+    console.log('Query from search bar: ', response);
+  }
+
   return (
     <div>
       <SideBar
@@ -40,17 +48,23 @@ export default function Jobs() {
       <div
         className="flex justify-center w-[calc(100vw-350px)]"
       >
-        <TopBar searchHandler={searchHandler} />
+        <TopBar searchHandler={searchHandler} setSearch={setSearch} search={search} />
         {
           jobsSearchData &&
           <div className="w-[50%] absolute top-[60px]">
-            <JobsDashboard jobsData={jobsSearchData} listStyle="searchBar" className="backdrop-filter backdrop-blur-lg border-solid border-[1px] border-gray-[200px] px-[12px] py-[5px]" />
+            <JobsDashboard
+              jobsData={jobsSearchData}
+              searchHandlerMore={searchHandlerMore}
+              listStyle="searchBar"
+              className="backdrop-filter backdrop-blur-lg border-solid border-[1px]
+              border-slate-200 px-lg divide-y divide-slate-400"
+            />
           </div>
         }
         <JobsDashboard
           jobsData={jobsData}
           listStyle="main"
-          className="mt-[60px]"
+          className="mt-[60px] divide-y divide-slate-200"
         />
       </div>
     </div>
