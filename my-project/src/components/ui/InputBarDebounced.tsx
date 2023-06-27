@@ -27,10 +27,9 @@ const inputVariants = cva(
   }
 );
 
-export interface InputProps extends
+export interface InputBarDebouncedProps extends
   InputHTMLAttributes<HTMLInputElement>,
-  VariantProps<typeof inputVariants>,
-  Partial<DebounceInput> {
+  VariantProps<typeof inputVariants> {
   isLoading?: boolean;
   register?: UseFormRegisterReturn<RegisterType>;
   inputType: InputType;
@@ -39,7 +38,7 @@ export interface InputProps extends
   debounceTimeout?: number;
 }
 
-const InputBar: FC<InputProps> = ({
+const InputBarDebounced: FC<InputBarDebouncedProps> = ({
   className,
   children,
   sizes,
@@ -51,7 +50,7 @@ const InputBar: FC<InputProps> = ({
   console.log('debounceTimeout: ', props.debounceTimeout)
   return (
     <div className="p-sm w-full relative">
-      <input
+      <DebounceInput
         className={
           cn(inputVariants({ variant, sizes, className }))}
         { ...register }
@@ -68,4 +67,4 @@ const InputBar: FC<InputProps> = ({
   );
 };
 
-export default InputBar;
+export default InputBarDebounced;
