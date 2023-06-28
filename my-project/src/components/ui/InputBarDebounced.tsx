@@ -1,6 +1,6 @@
 import { InputType, RegisterType } from "@/utils/interfaces";
 import { cva, VariantProps } from "class-variance-authority";
-import { FC, InputHTMLAttributes } from "react";
+import { FC, HTMLAttributes, InputHTMLAttributes } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import { cn } from "../../lib/mergeClasses";
 import { DebounceInput } from 'react-debounce-input';
@@ -28,11 +28,9 @@ const inputVariants = cva(
 );
 
 export interface InputBarDebouncedProps extends
-  InputHTMLAttributes<HTMLInputElement>,
+  HTMLAttributes<HTMLElement>,
   VariantProps<typeof inputVariants> {
   isLoading?: boolean;
-  register?: UseFormRegisterReturn<RegisterType>;
-  inputType: InputType;
   value?: any;
   valueHandler?: any;
   search?: any;
@@ -40,35 +38,25 @@ export interface InputBarDebouncedProps extends
   debounceTimeout?: number;
 }
 
-const InputBarDebounced: FC<InputBarDebouncedProps> = ({
+const InputBarDebounced: FC<any> = ({
   className,
   children,
   sizes,
   variant,
-  register,
-  inputType,
   ...props
 }) => {
-  console.log('debounceTimeout: ', props.debounceTimeout)
+  // console.log('debounceTimeout: ', props.debounceTimeout)
   return (
     <div className="p-sm w-full relative">
       <DebounceInput
-        className={
-          cn(inputVariants({ variant, sizes, className }))}
-        { ...register }
+        className={cn(inputVariants({ variant, sizes, className }))}
         {...props}
-        type={inputType}
         value={props.search}
         onChange={(event) => {
           props.valueHandler(event);
           props.setSearch(event.target.value);
         }}
       />
-      <label
-        htmlFor={props.name}
-        className="absolute p-[2px] bg-white top-[-4px] left-[25px] text-xs"
-      />
-      {children}
     </div>
   );
 };

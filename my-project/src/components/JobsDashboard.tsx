@@ -4,18 +4,20 @@ import React, { FC, HTMLAttributes } from "react";
 import JobCard from "./JobCard";
 import JobCardSearchBar from "./JobCardSearchBar";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { useJobsContext } from "@/contexts/JobsContext";
+import { useSearchBarContext } from "@/contexts/SearchBarContext";
 
 export interface JobsDashboardProps extends
   HTMLAttributes<HTMLUListElement> {
   isLoading?: boolean;
-  jobsData?: any;
   listStyle: "main" | "searchBar"
   className?: string;
-  searchHandlerMore?: any
 }
 
 
-const JobsDashboard: FC<JobsDashboardProps> = ({ jobsData, listStyle, className, searchHandlerMore }) => {
+const JobsDashboard: FC<JobsDashboardProps> = ({ listStyle, className }) => {
+  const { jobsData } = useJobsContext();
+  const { searchHandlerMore } = useSearchBarContext();
   console.log(jobsData)
   const chooseCardType = (jobData: any, listStyle: string) => {
     switch (listStyle) {

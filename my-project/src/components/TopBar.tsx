@@ -1,5 +1,6 @@
 "use client"
 
+import { useSearchBarContext } from "@/contexts/SearchBarContext";
 import useSearchBar from "@/hooks/api/useSearchBar";
 import React, { FC, HTMLAttributes, useState } from "react";
 import JobCardSearchBar from "./JobCardSearchBar";
@@ -10,13 +11,12 @@ import InputBarDebounced from "./ui/InputBarDebounced";
 export interface TopBarProps extends
   HTMLAttributes<HTMLElement> {
   isLoading?: boolean;
-  searchHandler: any
-  search: any
-  setSearch: any
 }
 
-const TopBar: FC<TopBarProps> = ({ searchHandler, search, setSearch }) => {
-  
+const TopBar: FC<TopBarProps> = ({ }) => {
+  const { searchHandler, search, setSearch } = useSearchBarContext();
+
+  console.log('Searchh', search)
 
   return (
     <header
@@ -26,7 +26,6 @@ const TopBar: FC<TopBarProps> = ({ searchHandler, search, setSearch }) => {
       <div className="w-[50%]">
         <InputBarDebounced
           className="p-md"
-          inputType="text"
           placeholder="Procure sua vaga"
           valueHandler={searchHandler}
           search={search}
