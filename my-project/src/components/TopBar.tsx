@@ -11,12 +11,11 @@ import InputBarDebounced from "./ui/InputBarDebounced";
 export interface TopBarProps extends
   HTMLAttributes<HTMLElement> {
   isLoading?: boolean;
+  searchHandler: any
 }
 
-const TopBar: FC<TopBarProps> = ({ }) => {
-  const { searchHandler, search, setSearch } = useSearchBarContext();
-
-  console.log('Searchh', search)
+const TopBar: FC<TopBarProps> = ({ searchHandler }) => {
+  
 
   return (
     <header
@@ -28,9 +27,7 @@ const TopBar: FC<TopBarProps> = ({ }) => {
           className="p-md"
           placeholder="Procure sua vaga"
           valueHandler={searchHandler}
-          search={search}
-          setSearch={setSearch}
-          debounceTimeout={1000}
+          debounceTimeout={2000}
         />
       </div>
     </header>

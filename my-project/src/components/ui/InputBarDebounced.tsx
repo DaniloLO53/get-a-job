@@ -33,8 +33,6 @@ export interface InputBarDebouncedProps extends
   isLoading?: boolean;
   value?: any;
   valueHandler?: any;
-  search?: any;
-  setSearch?: any;
   debounceTimeout?: number;
 }
 
@@ -51,11 +49,8 @@ const InputBarDebounced: FC<any> = ({
       <DebounceInput
         className={cn(inputVariants({ variant, sizes, className }))}
         {...props}
-        value={props.search}
-        onChange={(event) => {
-          props.valueHandler(event);
-          props.setSearch(event.target.value);
-        }}
+        type={inputType}
+        onChange={props.valueHandler}
       />
     </div>
   );
