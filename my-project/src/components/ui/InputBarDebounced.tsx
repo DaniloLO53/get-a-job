@@ -67,11 +67,7 @@ const InputBarDebounced: FC<any> = ({
         { ...register }
         {...props}
         type={inputType}
-        value={props.search}
-        onChange={(event) => {
-          valueHandler(event);
-          setSearch(event.target.value);
-        }}
+        onChange={props.valueHandler}
       />
     </div>
   );
