@@ -1,6 +1,6 @@
 import { InputType, RegisterType } from "@/utils/interfaces";
 import { cva, VariantProps } from "class-variance-authority";
-import { FC, InputHTMLAttributes, useEffect } from "react";
+import { FC, HTMLAttributes, InputHTMLAttributes, useEffect } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import { cn } from "../../lib/mergeClasses";
 import { DebounceInput } from 'react-debounce-input';
@@ -67,7 +67,7 @@ const InputBarDebounced: FC<any> = ({
         { ...register }
         {...props}
         type={inputType}
-        onChange={props.valueHandler}
+        onChange={valueHandler}
       />
     </div>
   );

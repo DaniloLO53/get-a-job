@@ -8,17 +8,15 @@ export interface JobsDashboardProps extends
   HTMLAttributes<HTMLUListElement> {
   isLoading?: boolean;
   jobsData?: any;
-  listStyle: "main" | "searchBar"
-  className?: string;
 }
 
 
-const JobsDashboard: FC<JobsDashboardProps> = ({ jobsData, listStyle, className }) => {
+const JobsDashboard: FC<JobsDashboardProps> = ({ jobsData }) => {
   console.log(jobsData)
 
   return (
-    <ul className={`flex flex-col justify-center ${className || ""}`}>
-      { jobsData?.jobs.map((jobData: any) => chooseCardType(jobData, listStyle)) }
+    <ul className={"flex flex-col justify-center md:w-[50%]"}>
+      { jobsData?.jobs.map((jobData: any) => <JobCard jobData={jobData} key={jobData.id + '-dashboard'} />) }
     </ul>
   )
 }

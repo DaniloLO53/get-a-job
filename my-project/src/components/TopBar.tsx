@@ -12,15 +12,13 @@ import InputBarDebounced from "./ui/InputBarDebounced";
 export interface TopBarProps extends
   HTMLAttributes<HTMLElement> {
   isLoading?: boolean;
-  searchHandler: any
-  search: any
-  setSearch: any;
   setSearchBarFocused: any;
-  inputRef: any;
-  clickRef: any;
 }
 
-const TopBar: FC<TopBarProps> = ({ searchHandler, search, setSearch, setSearchBarFocused, inputRef, clickRef }) => {
+const TopBar: FC<TopBarProps> = ({ setSearchBarFocused }) => {
+  const { searchHandler, search, setSearch } = useSearchBarContext();
+
+  console.log('Search: ', search)
   
 
   return (
@@ -44,6 +42,7 @@ const TopBar: FC<TopBarProps> = ({ searchHandler, search, setSearch, setSearchBa
           className="p-md"
           placeholder="Procure sua vaga"
           valueHandler={searchHandler}
+          setSearchBarFocused={setSearchBarFocused}
           search={search}
           setSearch={setSearch}
           debounceTimeout={1000}

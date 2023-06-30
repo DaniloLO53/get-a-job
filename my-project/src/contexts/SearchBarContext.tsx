@@ -30,12 +30,13 @@ export function SearchBarProvider({ children }: any): ReactElement {
   async function searchHandlerMore() {
     const response = await searchBarMore(search);
     setSearchBarData(response);
-    console.log('Query from search bar: ', response);
+    console.log('Query from search bar MORE: ', response);
   }
 
-  async function searchHandler(search: any) {
-    if (search.length !== 0) {
-      const response = await searchBar(search);
+  async function searchHandler({ target }: any) {
+    console.log('SEARCH: ', target.value)
+    if (target.value.length !== 0) {
+      const response = await searchBar(target.value);
       setSearchBarData(response);
       console.log('Query from search bar: ', response);
     } else {

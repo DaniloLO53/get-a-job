@@ -25,7 +25,7 @@ const JobCardSearchBar: FC<JobCardProps> = ({ jobData }) => {
 
   return (
     <li
-      className="border-b-solid border-b-gray-100 border-b-[1px] mb-[10px]"
+      className="hover:bg-primary-300/20 p-[9px]"
     >
       <p className="text-[22px] font-medium">{jobData.title}</p>
       <div className="flex items-center">
