@@ -5,6 +5,7 @@ import SearchBarResults from "@/components/SearchBarResults";
 import SideBar from "@/components/SideBar";
 import TopBar from "@/components/TopBar";
 import { useJobsContext } from "@/contexts/JobsContext";
+import { SearchBarProvider } from "@/contexts/SearchBarContext";
 import useJobs from "@/hooks/api/useJobs";
 import useSearchBar from "@/hooks/api/useSearchBar";
 import { searchBarMore } from "@/services/jobsApi";
@@ -23,6 +24,7 @@ export default function Jobs() {
   useEffect(() => {
     async function getJobs() {
       const jobs = await listJobs();
+      console.log('+++', jobs)
       setJobsData(jobs);
     }
     getJobs();

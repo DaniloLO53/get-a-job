@@ -28,22 +28,18 @@ const inputVariants = cva(
 );
 
 export interface InputBarDebouncedProps extends
-  InputHTMLAttributes<HTMLInputElement>,
+  HTMLAttributes<HTMLElement>,
   VariantProps<typeof inputVariants> {
   isLoading?: boolean;
-  register?: UseFormRegisterReturn<RegisterType>;
-  inputType: InputType;
   value?: any;
   valueHandler?: any;
-  search?: any;
-  setSearch?: any;
   debounceTimeout?: number;
   setSearchBarFocused: any;
   inputRef: any;
   clickRef: any;
 }
 
-const InputBarDebounced: FC<InputBarDebouncedProps> = ({
+const InputBarDebounced: FC<any> = ({
   className,
   children,
   sizes,
@@ -77,11 +73,6 @@ const InputBarDebounced: FC<InputBarDebouncedProps> = ({
           setSearch(event.target.value);
         }}
       />
-      <label
-        htmlFor={props.name}
-        className="absolute p-[2px] bg-white top-[-4px] left-[25px] text-xs"
-      />
-      {children}
     </div>
   );
 };

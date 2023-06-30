@@ -6,7 +6,6 @@ import React, { FC, HTMLAttributes } from "react";
 export interface SideBarProps extends
   HTMLAttributes<HTMLElement> {
   isLoading?: boolean;
-  setJobsData: any;
 }
 
 const SideBar: FC<SideBarProps> = ({ }) => {
