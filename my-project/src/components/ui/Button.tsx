@@ -4,17 +4,17 @@ import { cn } from "../../lib/mergeClasses";
 import { ThreeDots } from  'react-loader-spinner'
 
 const buttonVariants = cva(
-  `rounded px-xxxl py-xl`,
+  `rounded px-xxxl py-xl flex items-center justify-center`,
   {
     variants: {
       variant: {
-        default: "bg-primary-400 text-white font-medium",
+        default: "bg-primary-500 text-white font-medium",
         transparent: "bg-primary-400 opacity-40"
       },
       sizes: {
         default: "w-full",
         sm: "h-9 px-2",
-        lg: "h-11 px-8"
+        lg: "h-11 px-8",      
       },
     },
     defaultVariants: {

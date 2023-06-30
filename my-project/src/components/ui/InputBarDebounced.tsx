@@ -1,6 +1,6 @@
 import { InputType, RegisterType } from "@/utils/interfaces";
 import { cva, VariantProps } from "class-variance-authority";
-import { FC, InputHTMLAttributes } from "react";
+import { FC, InputHTMLAttributes, useEffect } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import { cn } from "../../lib/mergeClasses";
 import { DebounceInput } from 'react-debounce-input';
@@ -38,6 +38,9 @@ export interface InputBarDebouncedProps extends
   search?: any;
   setSearch?: any;
   debounceTimeout?: number;
+  setSearchBarFocused: any;
+  inputRef: any;
+  clickRef: any;
 }
 
 const InputBarDebounced: FC<InputBarDebouncedProps> = ({
@@ -47,21 +50,31 @@ const InputBarDebounced: FC<InputBarDebouncedProps> = ({
   variant,
   register,
   inputType,
+  setSearch,
+  valueHandler,
+  setSearchBarFocused,
+  inputRef,
+  clickRef,
   ...props
 }) => {
-  console.log('debounceTimeout: ', props.debounceTimeout)
+  function onBlurHandler({ relatedTarget: rt, target: t }: any) {
+    (rt && rt.id === "nextButton") ? t.focus() : setSearchBarFocused(false);
+  }
+
   return (
     <div className="p-sm w-full relative">
       <DebounceInput
-        className={
-          cn(inputVariants({ variant, sizes, className }))}
+        inputRef={inputRef}
+        onFocus={() => setSearchBarFocused(true)}
+        onBlur={onBlurHandler}
+        className={cn(inputVariants({ variant, sizes, className }))}
         { ...register }
         {...props}
         type={inputType}
         value={props.search}
         onChange={(event) => {
-          props.valueHandler(event);
-          props.setSearch(event.target.value);
+          valueHandler(event);
+          setSearch(event.target.value);
         }}
       />
       <label

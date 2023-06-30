@@ -7,6 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        searchBarBackDrop: {
+          '0%': { background: 'transparent' },
+          '100%': { background: 'black', opacity: '0.5' },
+        }
+      },
+      animation: {
+        searchBarBackDrop: 'searchBarBackDrop 500ms ease-in-out forwards;'
+      },
       colors: {
         primary: {
           100: '#99FFFF',

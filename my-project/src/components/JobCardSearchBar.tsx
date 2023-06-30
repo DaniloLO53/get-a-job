@@ -1,12 +1,9 @@
 "use client"
 
-import { Divider } from "@mui/material";
 import React, { FC, HTMLAttributes } from "react";
 import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import EmojiTransportationOutlinedIcon from '@mui/icons-material/EmojiTransportationOutlined';
-import { calculatePublishTime } from "@/lib/calculatePublishTime";
-import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 
 export interface JobCardProps extends
   HTMLAttributes<HTMLUListElement> {
@@ -26,9 +23,6 @@ const JobCardSearchBar: FC<JobCardProps> = ({ jobData }) => {
     }
   }
 
-  console.log('TESTE')
-
-  
   return (
     <li
       className="hover:bg-primary-100/20 py-4 px-3 first:pt-2 last:pb-2"
