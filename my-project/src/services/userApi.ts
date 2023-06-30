@@ -15,3 +15,12 @@ export async function signIn(payload: Omit<SignUp, "confirmPassword">) {
   const response = await api.post("/api/sign-in", payload);
   return response.data;
 }
+
+export async function getProfile(token: string) {
+  const response = await api.get("/profile", {
+    headers: {
+      Authentication: "Bearer " + token
+    }
+  });
+  return response.data;
+}

@@ -13,25 +13,10 @@ import { IError } from "@/utils/IError";
 import { useRouter } from "next/navigation";
 import useSignIn from "@/hooks/api/useSignIn";
 import { ThreeDots } from  'react-loader-spinner'
+import SignInMain from "@/components/SignInMain";
 
 export default function SignIn() {
-  const { signIn, signInLoading } = useSignIn();
-  const { setUserData } = useUserContext();
-  const router =  useRouter();
-
-  async function submit(data: any) {
-    try {
-      const response = await signIn(data);
-      setUserData(response);
-      router.push("/jobs")
-    } catch (error) {
-      if ((error as IError).response.data) {
-        toast.error(((error as IError)).response.data.message);
-      } else {
-        toast.error("Erro ao realizar cadastro.");
-      }
-    }
-  }
+  const { signInLoading } = useSignIn();
 
   return (
     <div className="bg-primary-500 h-screen flex items-center justify-evenly relative">
@@ -47,43 +32,7 @@ export default function SignIn() {
             wrapperClass=""
             visible={true}
           />
-        : <div className="w-[450px] flex flex-col items-center justify-center rounded-lg
-          bg-white pb-[40px]">
-            <Image
-              src="/logo.svg"
-              alt="Vercel Logo"
-              className="m-[45px]"
-              width={350}
-              height={100}
-              priority
-            />
-            <LoginForm isLoading={signInLoading} submit={submit} />
-            <br></br>
-            <Link href="/sign-up">
-              <p className="underline text-blue-800">
-                Não possui uma conta ainda? Cadastre-se!
-              </p>
-            </Link>
-            <Divider className="w-[80%] border-t-2 border-gray-300 my-9">OU</Divider>
-            <div className="w-[80%]">
-              <Button className="flex items-center justify-around" type="button">
-                <Link href={getGoogleUrl()}>
-                  <span className="bg-white rounded-sm p-2">
-                    <Image
-                      className="inline"
-                      src="/google.svg"
-                      alt="Google logo"
-                      width={32}
-                      height={32}
-                      priority
-                    />
-                  </span>
-                  &nbsp; &nbsp; &nbsp;
-                  <span>Entre com sua conta Google</span>
-                </Link>
-              </Button>
-            </div>
-          </div>
+        : <SignInMain />
       }
     </div>
   )

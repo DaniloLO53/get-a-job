@@ -12,6 +12,7 @@ export interface ModalContainerProps extends
 const ModalContainer: FC<ModalContainerProps> = ({ children, handleClose, open }) => {
   return (
     <Modal
+      className="flex justify-center items-center"
       open={open}
       onClose={handleClose}
       aria-labelledby="parent-modal-title"

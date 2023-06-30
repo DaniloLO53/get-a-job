@@ -15,7 +15,7 @@ const JobsDashboard: FC<JobsDashboardProps> = ({ jobsData }) => {
   console.log(jobsData)
 
   return (
-    <ul className={"flex flex-col justify-center md:w-[50%]"}>
+    <ul className={"flex flex-col justify-center md:w-[50%] bg-white"}>
       { jobsData?.jobs.map((jobData: any) => <JobCard jobData={jobData} key={jobData.id + '-dashboard'} />) }
     </ul>
   )
