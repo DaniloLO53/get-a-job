@@ -44,7 +44,9 @@ const TopBar: FC<TopBarProps> = ({ searchHandler, search, setSearch, setSearchBa
           className="p-md"
           placeholder="Procure sua vaga"
           valueHandler={searchHandler}
-          debounceTimeout={2000}
+          search={search}
+          setSearch={setSearch}
+          debounceTimeout={1000}
         />
       </div>
       <div>
