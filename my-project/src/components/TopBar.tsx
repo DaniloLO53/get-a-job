@@ -13,7 +13,6 @@ export interface TopBarProps extends
   HTMLAttributes<HTMLElement> {
   isLoading?: boolean;
   searchHandler: any
-<<<<<<< HEAD
   search: any
   setSearch: any;
   setSearchBarFocused: any;
@@ -22,11 +21,6 @@ export interface TopBarProps extends
 }
 
 const TopBar: FC<TopBarProps> = ({ searchHandler, search, setSearch, setSearchBarFocused, inputRef, clickRef }) => {
-=======
-}
-
-const TopBar: FC<TopBarProps> = ({ searchHandler }) => {
->>>>>>> parent of be32be5 (feat: search bar pagination)
   
 
   return (
