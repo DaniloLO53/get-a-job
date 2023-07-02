@@ -2,6 +2,7 @@ import { FC, InputHTMLAttributes } from "react";
 import InputBar from "./InputBar";
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import { InputBarProps } from "@/utils/interfaces";
+import InputBarWithValidation from "./InputBarWithValidation";
 
 interface InputProps extends
   InputHTMLAttributes<HTMLInputElement>,
@@ -10,7 +11,7 @@ interface InputProps extends
 const InputBarEmail: FC<InputProps> = ({ ...props }) => {
   return (
     <div className="w-[80%]">
-      <InputBar
+      <InputBarWithValidation
         variant={props.errors.email ? "error" : "default"}
         type="email"
         placeholder="Email"

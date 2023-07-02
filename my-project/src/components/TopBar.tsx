@@ -1,6 +1,6 @@
 "use client"
 
-import SignIn from "@/app/sign-in/page";
+import { useJobsContext } from "@/contexts/JobsContext";
 import { useSearchBarContext } from "@/contexts/SearchBarContext";
 import { useUserContext } from "@/contexts/UserContext";
 import useSearchBar from "@/hooks/api/useSearchBar";
@@ -13,16 +13,23 @@ import SignInMain from "./SignInMain";
 import Button from "./ui/Button";
 import InputBar from "./ui/InputBar";
 import InputBarDebounced from "./ui/InputBarDebounced";
+import TopBarProfile from "./TopBarProfile";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export interface TopBarProps extends
   HTMLAttributes<HTMLElement> {
   isLoading?: boolean;
   setSearchBarFocused: any;
+  setShowProfile: any;
 }
 
-const TopBar: FC<TopBarProps> = ({ setSearchBarFocused }) => {
+const TopBar: FC<TopBarProps> = ({ setSearchBarFocused, setShowProfile }) => {
   const { searchHandler, search, setSearch } = useSearchBarContext();
-  const { signInModalOpened, setSignInModalOpened, userData } = useUserContext();
+  const { signInModalOpened, setSignInModalOpened, signOutHandler, userData } = useUserContext();
+
+  console.log('TOP BAR RENDERED', {
+    userData
+  });
 
   function closeSignInModal() {
     setSignInModalOpened(false);
@@ -58,16 +65,29 @@ const TopBar: FC<TopBarProps> = ({ setSearchBarFocused }) => {
           debounceTimeout={1000}
         />
       </div>
-      <div>
-        {
-          userData ?
-          <p>LOGADO</p> :
+      <div className="flex items-center relative w-[170px]">
+        <button
+          onClick={() => setShowProfile(true)}
+          onBlur={() => setShowProfile(false)}
+        >
+          <AccountCircleIcon />
+        </button>
+          {
+            userData && <p>{ userData.user.dbUserWithoutPassword.first_name || userData.user.dbUserWithoutPassword.email }</p>
+          }
+        { !userData.user && 
           <Button
             sizes="sm"
             className=""
-            onClick={() => setSignInModalOpened(true)}
+            onClick={() => {
+              if (userData.user) {
+                signOutHandler();
+              } else {
+                setSignInModalOpened(true)
+              }
+            }}
           >
-            SIGN-IN
+            SIGN IN
           </Button>
         }
       </div>

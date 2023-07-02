@@ -39,7 +39,7 @@ export interface InputProps extends
   debounceTimeout?: number;
 }
 
-const InputBar: FC<InputProps> = ({
+const InputBarWithValidation: FC<InputProps> = ({
   className,
   children,
   sizes,
@@ -48,7 +48,6 @@ const InputBar: FC<InputProps> = ({
   inputType,
   ...props
 }) => {
-  console.log('register: ', { ...register})
   return (
     <div className="p-sm w-full relative">
       <input
@@ -57,7 +56,6 @@ const InputBar: FC<InputProps> = ({
         { ...register }
         {...props}
         type={inputType}
-        onChange={props.valueHandler}
       />
       <label
         htmlFor={props.name}
@@ -68,4 +66,4 @@ const InputBar: FC<InputProps> = ({
   );
 };
 
-export default InputBar;
+export default InputBarWithValidation;

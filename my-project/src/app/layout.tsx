@@ -36,7 +36,6 @@ export default function RootLayout({
           pauseOnHover
           theme="light"
         />
-        <ToastContainer />
         <UserProvider>
           <SearchBarProvider>
             <JobsProvider>

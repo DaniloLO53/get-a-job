@@ -16,6 +16,15 @@ export async function signIn(payload: Omit<SignUp, "confirmPassword">) {
   return response.data;
 }
 
+export async function signOut(token: string) {
+  const response = await api.delete("/api/sign-out", {
+    headers: {
+      Authentication: "Bearer " + token
+    }
+  });
+  return response.data;
+}
+
 export async function getProfile(token: string) {
   const response = await api.get("/profile", {
     headers: {

@@ -1,22 +1,24 @@
 "use client"
 
 import useSignIn from '@/hooks/api/useSignIn';
+import useSignOut from '@/hooks/api/useSignOut';
 import { getProfile } from '@/services/userApi';
 import { IError } from '@/utils/IError';
 import { useRouter } from 'next/navigation';
-import { createContext, ReactElement, useContext, useState } from 'react';
+import { createContext, MutableRefObject, ReactElement, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 interface IUserContext {
-  userToken: any;
-  setUserToken: any;
+  // userToken: any;
+  // setUserToken: any;
   userData: any;
   setUserData: any;
   submit: any;
   signInLoading: any;
   signInModalOpened: any;
   setSignInModalOpened: any;
+  signOutHandler: any;
   loadProfile: any;
 }
 
@@ -31,30 +33,54 @@ export function useUserContext(): IUserContext {
 }
 
 export function UserProvider({ children }: any): ReactElement {
-  const [userToken, setUserToken] = useLocalStorage('userData', {});
+  // const [userToken, setUserToken] = useLocalStorage('userToken', {});
   const { signIn, signInLoading } = useSignIn();
+  const { signOut, signOutLoading } = useSignOut();
   const router =  useRouter();
   const [signInModalOpened, setSignInModalOpened] = useState(false);
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<any>(null);
 
-  const loadProfile = async () => {
-    const { token } = userToken;
+  console.log('USER CONTEXT RENDERED')
 
-    if (token) {
-      const profile = await getProfile(token);
+  async function signOutHandler() {
+    const userToken = JSON.parse(localStorage.getItem("userToken") || "null");
+
+    try {
+      if (userToken && userToken.token) {
+        await signOut(userToken.token);
+        localStorage.setItem("userToken", "null");
+        window.location.reload()
+      }
+    } catch (error) {
+      if ((error as IError).response.data) {
+        toast.error(((error as IError)).response.data.message);
+      } else {
+        toast.error("Erro ao realizar cadastro.");
+      }
+    }
+  }
+  async function loadProfile() {
+    const userToken = JSON.parse(localStorage.getItem("userToken") || "null");
+
+    if (userToken && userToken.token) {
+      const profile = await getProfile(userToken.token);
+      console.log('GETTED')
       setUserData(profile);
-      console.log('PROFILE: ', profile);
     } else {
-      alert('No token')
+      setUserData({ user: null })
     }
   }
 
   async function submit(data: any) {
     try {
       const response = await signIn(data);
-      setUserToken(response);
+      localStorage.setItem("userToken", JSON.stringify(response));
       setSignInModalOpened(false);
-      router.push("/jobs")
+      if (window.location.pathname.includes("sign-in")) {
+        router.push("/jobs")
+      } else {
+        window.location.pathname = "/jobs"
+      }
     } catch (error) {
       if ((error as IError).response.data) {
         toast.error(((error as IError)).response.data.message);
@@ -65,7 +91,18 @@ export function UserProvider({ children }: any): ReactElement {
   }
 
   return (
-    <UserContext.Provider value={{ userToken, setUserToken, submit, signInLoading, setSignInModalOpened, signInModalOpened, setUserData, userData, loadProfile }}>
+    <UserContext.Provider value={{
+      // userToken,
+      // setUserToken,
+      submit,
+      signInLoading,
+      setSignInModalOpened,
+      signInModalOpened,
+      signOutHandler,
+      setUserData,
+      userData,
+      loadProfile
+    }}>
       {children}
     </UserContext.Provider>
   );

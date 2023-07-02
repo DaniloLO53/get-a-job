@@ -5,6 +5,7 @@ import MainJobsScreen from "@/components/MainJobsScreen";
 import SearchBarResults from "@/components/SearchBarResults";
 import SideBar from "@/components/SideBar";
 import TopBar from "@/components/TopBar";
+import TopBarProfile from "@/components/TopBarProfile";
 import { useJobsContext } from "@/contexts/JobsContext";
 import { SearchBarProvider, useSearchBarContext } from "@/contexts/SearchBarContext";
 import { useUserContext } from "@/contexts/UserContext";
@@ -15,25 +16,20 @@ import React, { useEffect, useState } from "react";
 
 export default function Jobs() {
   const { searchBarData } = useSearchBarContext();
-  const { loadProfile } = useUserContext();
-  const [jobsData, setJobsData] = useState(null);
+  const { jobsData } = useJobsContext();
   const [searchBarFocused, setSearchBarFocused] = useState(null);
+  const [showProfile, setShowProfile] = useState(false);
 
-  useEffect(() => {
-    async function getJobs() {
-      const jobs = await listJobs();
-      loadProfile();
-      setJobsData(jobs);
-    }
-    getJobs();
-  }, [])
+  console.log('JOBS RENDERED', { jobsData })
+  console.log('showProfile', showProfile)
 
   return (
     <div className="relative">
-      <TopBar setSearchBarFocused={setSearchBarFocused} />
+      <TopBar setSearchBarFocused={setSearchBarFocused} setShowProfile={setShowProfile}  />
       <MainJobsScreen searchBarFocused={searchBarFocused} jobsData={jobsData}>
         <JobsDashboard jobsData={jobsData} />
         <SideBar />
+        { showProfile && <TopBarProfile /> }
       </MainJobsScreen>
       { searchBarData && searchBarFocused && <SearchBarResults /> }
     </div>

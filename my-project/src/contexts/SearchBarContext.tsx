@@ -2,7 +2,6 @@
 
 import { searchBar, searchBarMore } from '@/services/jobsApi';
 import { createContext, ReactElement, useContext, useState } from 'react';
-import useLocalStorage from '../hooks/useLocalStorage';
 
 interface ISearchBarContext {
   searchBarData: any;

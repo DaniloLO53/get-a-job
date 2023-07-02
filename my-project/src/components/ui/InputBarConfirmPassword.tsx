@@ -3,6 +3,7 @@ import VisibilityEyeIcon from "../VisibilityEyeIcon";
 import InputBar from "./InputBar";
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import { InputBarProps } from "@/utils/interfaces";
+import InputBarWithValidation from "./InputBarWithValidation";
 
 export interface InputProps extends
   InputHTMLAttributes<HTMLInputElement>, InputBarProps {}
@@ -10,7 +11,7 @@ export interface InputProps extends
 const InputBarConfirmPassword: FC<InputProps> = ({ ...props }) => {
   return (
     <div className="w-[80%]">
-      <InputBar
+      <InputBarWithValidation
         type="password"
         variant={props.errors.confirmPassword ? "error" : "default"}
         placeholder="Confirme a senha"
@@ -28,7 +29,7 @@ const InputBarConfirmPassword: FC<InputProps> = ({ ...props }) => {
           inputType={props.inputType}
           setInputType={props.setInputType}
         />
-      </InputBar>
+      </InputBarWithValidation>
       <div>
         <ReportProblemIcon className={`${!props.errors.confirmPassword && "invisible"} text-red-800`} />
         &nbsp;
